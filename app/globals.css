@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-forest-50: #f4f7f3;
+  --color-forest-100: #e2eadf;
+  --color-forest-600: #3f6b4f;
+  --color-forest-800: #24422f;
+  --color-forest-900: #14261b;
+  --color-bear-100: #fdf0e0;
+  --color-bear-600: #b45309;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html, body { height: 100%; color-scheme: light; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7f3;
+  color: #1c2a22;
+  font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+* { scrollbar-width: thin; scrollbar-color: #c9d6c6 transparent; }
+
+.fade-up { animation: fade-up 0.35s ease both; }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Метка медведя на карте */
+.bear-marker {
+  width: 38px; height: 38px; border-radius: 9999px;
+  display: grid; place-items: center;
+  background: #fff; border: 3px solid; font-size: 19px; line-height: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); cursor: pointer;
+  transition: transform 0.15s;
+}
+.bear-marker:hover { transform: scale(1.12); }
+.bear-pulse { animation: bear-pulse 1.8s infinite; }
+@keyframes bear-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.55); }
+  70%  { box-shadow: 0 0 0 16px rgba(220, 38, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+.maplibregl-popup-content {
+  border-radius: 16px; padding: 14px 44px 14px 16px;
+  box-shadow: 0 10px 30px rgba(20, 38, 27, 0.25);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+.maplibregl-ctrl-group { border-radius: 14px !important; overflow: hidden; }
+
+/* Крупная кнопка закрытия попапа */
+.maplibregl-popup-close-button {
+  top: 6px; right: 6px;
+  width: 36px; height: 36px;
+  font-size: 26px; line-height: 36px;
+  border-radius: 9999px;
+  color: #24422f;
+}
+.maplibregl-popup-close-button:hover,
+.maplibregl-popup-close-button:active { background: #e2eadf; }
+
+/* Поле даты и времени: на iPhone оно выходит за края и ломает выравнивание */
+input[type="datetime-local"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 3rem;
+  text-align: left;
+}
+input[type="datetime-local"]::-webkit-date-and-time-value { text-align: left; }
