@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐻 Bear Map Kuzbass
 
-## Getting Started
+Карта встреч с медведями в Кемеровской области. Жители сообщают, где видели зверя, модератор проверяет сообщения, а подтверждённые наблюдения появляются на карте, чтобы грибники, туристы и дачники могли быть осторожнее.
 
-First, run the development server:
+**Сайт не является коммерческим проектом и создан для информирования граждан.**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 Сайт: [https://bear-map-kuzbass.vercel.app/]
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Возможности
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Карта**
+- Точная граница Кемеровской области
+- Метки с цветом по давности (до суток, до недели, до месяца), зона осторожности вокруг каждой метки
+- Кластеры, фильтры по периоду, поиск посёлка или района
+- Поворот карты, кнопка компаса и поворот по компасу телефона (только на https)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Сообщения**
+- Отправка без регистрации: место выбирается на карте или по геолокации
+- Название места определяется автоматически
+- Кнопка «И я видел» для подтверждения чужих наблюдений
+- Защита от спама: лимиты заявок, проверка точки по границе области, необязательная капча Cloudflare Turnstile
 
-## Learn More
+**Панель модератора** (`/moderator`)
+- Очередь заявок: подтвердить, отклонить, изменить
+- Создание сообщений от имени модератора
+- Статистика: заявки, посетители, график за 14 дней, места, где чаще видят медведей
 
-To learn more about Next.js, take a look at the following resources:
+**Страницы:** «Что делать при встрече с медведем», «О проекте», политика конфиденциальности.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Технологии
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js (App Router), TypeScript, Tailwind CSS, MapLibre GL и react-map-gl, тайлы OpenFreeMap (данные © участники OpenStreetMap), Supabase (Postgres + PostGIS), хостинг на Vercel.
