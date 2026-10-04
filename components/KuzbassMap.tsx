@@ -157,7 +157,7 @@ export default function KuzbassMap({
       ref={mapRef}
       mapStyle="https://tiles.openfreemap.org/styles/liberty"
       initialViewState={{ bounds: BOUNDS, fitBoundsOptions: { padding: 30 } }}
-      maxBounds={[[82.5, 51.5], [90.7, 57.5]]}
+      maxBounds={[[82.5, 51.5], [90.7, 57.5]] as never} // as never: обход несовпадения типов библиотек
       minZoom={5}
       maxPitch={0}
       dragRotate
